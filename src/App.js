@@ -5,6 +5,7 @@ function App() {
   // 변수
   const name = "Hong";
   let age = 30;
+  let gender = true;
   const naver = {
   // 객체
     name : "네이버",
