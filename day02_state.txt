@@ -1,0 +1,11 @@
+리액트 훅
+1. useState (state = 컴포넌트의 상태)
+    	state를 간편하게 생성하고, 변경시켜주는 도구
+	**state가 변경되면 화면이 변경된다.
+
+const[state,setState] = useState(초기값)
+사용하는 이유
+변수가 변하면 실제화면(UI) 렌더링(만들기) 하지 않음
+state가 변하면 실제화면(UI) 렌더링(만들기) 한다.
+
+

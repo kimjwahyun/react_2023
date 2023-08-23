@@ -1,0 +1,103 @@
+import styles from './App.css';
+import Hello from './component/Hello';
+
+function App() {
+  
+  return (
+    <div className="App">
+        <h2>props : properties</h2>
+        {/* 컴포넌트에 속성을 부여 : */}
+      <Hello age={10} />
+      <Hello age={20} />
+      <Hello age={30} />
+    </div>
+  ); 
+}
+
+export default App;
+
+================================================================
+<Hello.js>
+
+import { useState } from "react";
+
+// 속성을 받아준다.
+// props : object
+export default function Hello(props) {
+    // props는 강제로 변경할 수 없다.
+    // props.age = 150;
+    const[name, setName]  = useState('hong');
+
+    // useState를 이용해서
+    const[age,setAge] = useState(props.age);
+
+    const msg = props.age > 19 ? "성년" : "미성년";
+
+    function changeName() {
+        const newName = name === 'hong' ? 'kim' : 'hong';
+        setName(newName);
+        setAge(age + 5);
+    }
+    return(
+        <div>
+            <h1>{name} ({age}) : {msg} </h1>
+            <button onClick={changeName}>changeName</button>
+        </div>
+    )
+}
+
+===================================================================
+
+import styles from './App.css';
+function Header(props) {
+  return <header>
+      <h1><a href='/'>{props.title}</a></h1>
+  </header>
+}
+
+function Article(props) {
+  return <article>
+            <h2>{props.title}</h2>
+            {props.body}
+        </article>
+}
+
+// function Nav() {
+//   return <nav>
+//               <ol>
+//                 <li><a href='/'>HTML</a></li>
+//                 <li><a href='/'>CSS</a></li>
+//                 <li><a href='/'>JavaScript</a></li>
+//               </ol>
+//           </nav>
+// }
+function Nav(props) {
+  const arr = [] ;
+  for (let i = 0; i < props.topics.length; i++) {
+    let t = props.topics[i];
+    arr.push(<li key={t.id}><a href="/">{t.title}</a></li>)
+  }
+  return <nav>
+              <ol>
+                {arr}
+              </ol>
+          </nav>
+}
+function App() {
+  // 배열
+  const topics = [
+    {id:1, title:'HTML', body:'HyperText Markup Languge'},
+    {id:2, title:'CSS', body:'Cascading Style Sheets'},
+    {id:3, title:'JS', body:'JavaScript'},
+  ]
+  return (
+    <div className="App">
+      <Header title="REACT" />
+      <Nav topics={topics} />
+      <Article title="Welcome" body="Hello. Web" />
+      <Article title="HI" body="Hello. React" />
+    </div>
+  ); 
+}
+
+export default App;

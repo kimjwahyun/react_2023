@@ -1,0 +1,54 @@
+import Hello from "./component/Hello";
+import Welcome from "./component/Welcome";
+import World from "./component/World";
+
+function App() {
+  function showName() {
+    console.log("Hong");
+  }
+  function showGender(gender){
+    console.log(gender);
+  }
+  function showText(e){
+    console.log(e.target.value);
+  }
+  // 이벤트로 변수값이 변경되어도 화면(UI)는 변경되지 않는다.
+  // 
+  let name = 'kim';
+  function showName2(){
+    name = 'kang'
+    console.log(name);
+    return name;
+  }
+  return (
+    <div className="App">
+      <h1>Hello</h1>
+      {/* 첫번째 방식은 매개변수 전달이 안됨
+            이벤트실행이 안되고 바로 hong이 보인다. */}
+      {/* <button onClick={showName}> Show name </button> */}
+      <button onClick={showName}> Show name </button>
+      {/* 매개변수 전달 */}
+      <button onClick={function () {
+        console.log(35);
+      }}> Show age </button>
+      <button onClick={()=> {
+        console.log("거구장");
+      }}> Show addr </button>
+      {/* 주로 사용 */}
+      <button onClick={()=> {
+        // 함수를 호출한다.(매개변수 전달)
+        showGender("남자");
+      }}> Show gender </button>
+      {/* 리턴이 있는 함수 호출 */}
+      <button onClick={showName2}>Show name</button>
+      <div> name = {name} </div>
+      <input type="text" onChange={showText} />
+      <input type="text" onChange={(e)=>{
+        // e => 이벤트, target => 이벤트가 발생한 요소
+        console.log(e.target.value);
+      }} />
+    </div>
+  ); 
+}
+
+export default App;
